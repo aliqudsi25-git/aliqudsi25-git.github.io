@@ -1,24 +1,471 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ali Qudsi</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; max-width: 42rem; margin: 6rem auto; padding: 0 1.5rem; line-height: 1.6; color: #1a1a1a; }
-    h1 { font-size: 2.5rem; margin-bottom: 0.25rem; }
-    p.tagline { color: #666; margin-top: 0; }
-    a { color: #0969da; }
-    @media (prefers-color-scheme: dark) {
-      body { background: #0d1117; color: #e6edf3; }
-      p.tagline { color: #8b949e; }
-      a { color: #4493f8; }
-    }
-    </style>
-  </head>
-  <body>
-    <h1>Ali Qudsi</h1>
-  <p class="tagline">aliqudsi.com</p>
-  <p>This site is up and running on GitHub Pages.</p>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ali Qudsi — Engineering Science &amp; Structural Design</title>
+<meta name="description" content="Ali Qudsi — engineering science student on a civil/structural pathway, with a background in economics, business planning, and four languages. Monmouth County, New Jersey.">
+<link rel="canonical" href="https://aliqudsi.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aliqudsi.com/">
+<meta property="og:title" content="Ali Qudsi — Engineering Science &amp; Structural Design">
+<meta property="og:description" content="Engineering science student on a civil/structural pathway. Structural analysis, 3D modeling, business planning, four languages.">
+<meta property="og:site_name" content="Ali Qudsi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ali Qudsi — Engineering Science &amp; Structural Design">
+<meta name="twitter:description" content="Engineering science student on a civil/structural pathway. Structural analysis, 3D modeling, business planning, four languages.">
+<meta name="theme-color" content="#f4f2ed" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12140f" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2312140f'/%3E%3Cpath d='M4 24 L16 7 L28 24' fill='none' stroke='%2300b3c8' stroke-width='2.5'/%3E%3Cpath d='M9 24 h14' stroke='%23f4f2ed' stroke-width='2.5'/%3E%3C/svg%3E">
+
+<style>
+:root{
+  --paper:#f4f2ed; --ink:#16181a; --ink-2:#454b52; --ink-3:#666d74;
+  --rule:#c9c6bd; --rule-2:#e0ddd4; --accent:#00738a; --accent-soft:#e2f2f5;
+  --grid:rgba(22,24,26,.055);
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+  --maxw:1180px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#12140f; --ink:#e8e6df; --ink-2:#b4b8b2; --ink-3:#8b918a;
+    --rule:#2f332e; --rule-2:#212520; --accent:#4cd4e8; --accent-soft:#12303a;
+    --grid:rgba(232,230,223,.05);
+  }
+}
+:root[data-theme="light"]{
+  --paper:#f4f2ed; --ink:#16181a; --ink-2:#454b52; --ink-3:#666d74;
+  --rule:#c9c6bd; --rule-2:#e0ddd4; --accent:#00738a; --accent-soft:#e2f2f5;
+  --grid:rgba(22,24,26,.055);
+}
+:root[data-theme="dark"]{
+  --paper:#12140f; --ink:#e8e6df; --ink-2:#b4b8b2; --ink-3:#8b918a;
+  --rule:#2f332e; --rule-2:#212520; --accent:#4cd4e8; --accent-soft:#12303a;
+  --grid:rgba(232,230,223,.05);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+
+.skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:#fff;padding:.6rem 1rem;z-index:100}
+.skip:focus{left:.5rem;top:.5rem}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.5rem)}
+
+/* ---------- drawing-sheet frame ---------- */
+.sheet{border-left:1px solid var(--rule);border-right:1px solid var(--rule);max-width:var(--maxw);margin:0 auto;position:relative}
+
+/* ---------- header ---------- */
+.topbar{
+  position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 92%,transparent);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);
+}
+.topbar-in{display:flex;align-items:center;gap:1rem;justify-content:space-between;min-height:52px}
+.brand{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
+.brand b{color:var(--ink);font-weight:600}
+.nav{display:flex;gap:.15rem;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-2);text-decoration:none;padding:.45rem .6rem;border-radius:3px;white-space:nowrap;
+}
+.nav a:hover,.nav a:focus-visible{color:var(--accent);background:var(--accent-soft)}
+.themetoggle{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  background:none;border:1px solid var(--rule);color:var(--ink-2);
+  padding:.35rem .6rem;border-radius:3px;cursor:pointer;white-space:nowrap;
+}
+.themetoggle:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(3rem,9vw,6.5rem) clamp(2.5rem,6vw,4rem);position:relative}
+.tick{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.hero h1{
+  font-size:clamp(2.6rem,10vw,6.2rem);line-height:.92;margin:.7rem 0 0;
+  letter-spacing:-.035em;font-weight:680;
+}
+.hero .rulewide{height:1px;background:var(--rule);margin:1.6rem 0 1.4rem;position:relative}
+.hero .rulewide::before,.hero .rulewide::after{
+  content:"";position:absolute;top:-3px;width:1px;height:7px;background:var(--accent)
+}
+.hero .rulewide::before{left:0}.hero .rulewide::after{right:0}
+.lede{font-size:clamp(1.05rem,2.3vw,1.3rem);max-width:56ch;color:var(--ink-2);margin:0}
+.lede strong{color:var(--ink);font-weight:600}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;margin-top:1.8rem;font-family:var(--mono);font-size:.75rem;color:var(--ink-3)}
+.meta a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--rule)}
+.meta a:hover,.meta a:focus-visible{color:var(--accent);border-color:var(--accent)}
+.langs{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.langs span{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--rule);color:var(--ink-2);padding:.28rem .6rem;border-radius:2px;
+}
+
+/* ---------- index / dashboard ---------- */
+.indexwrap{padding-bottom:clamp(2.5rem,6vw,4rem)}
+.indexlabel{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin:0 0 .9rem}
+.index{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:1px;background:var(--rule-2);border:1px solid var(--rule-2)}
+.card{
+  background:var(--paper);padding:1.3rem 1.35rem;text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;gap:.45rem;min-height:9.5rem;
+  transition:background .15s ease;
+}
+.card:hover,.card:focus-visible{background:var(--accent-soft);outline:none}
+.card:focus-visible{box-shadow:inset 0 0 0 2px var(--accent)}
+.card .n{font-family:var(--mono);font-size:.66rem;color:var(--accent);letter-spacing:.1em}
+.card h3{margin:0;font-size:1.14rem;font-weight:640;letter-spacing:-.012em}
+.card p{margin:0;font-size:.84rem;color:var(--ink-2);line-height:1.45;flex:1}
+.card .go{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);letter-spacing:.06em}
+.card:hover .go,.card:focus-visible .go{color:var(--accent)}
+
+/* ---------- sections ---------- */
+section{border-top:1px solid var(--rule);padding-block:clamp(2.4rem,6vw,4rem)}
+.shead{display:flex;align-items:baseline;gap:1rem;margin-bottom:2rem}
+.snum{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:.1em}
+.shead h2{font-size:clamp(1.1rem,2.6vw,1.5rem);margin:0;letter-spacing:.02em;font-weight:640}
+.shead .fill{flex:1;height:1px;background:var(--rule-2)}
+
+/* entries */
+.entry{display:grid;grid-template-columns:minmax(0,7.5rem) minmax(0,1fr);gap:1rem 2rem;padding:1.4rem 0;border-top:1px dashed var(--rule-2)}
+.entry:first-of-type{border-top:none;padding-top:0}
+.when{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);letter-spacing:.04em;padding-top:.3rem}
+.entry h3{margin:0 0 .2rem;font-size:1.06rem;font-weight:640;letter-spacing:-.005em}
+.org{color:var(--accent);font-size:.9rem;margin:0 0 .7rem;font-weight:500}
+.entry ul{margin:.5rem 0 0;padding-left:1.05rem}
+.entry li{margin:.35rem 0;color:var(--ink-2)}
+.entry p{color:var(--ink-2);margin:.4rem 0 0}
+.tagrow{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.9rem}
+.tag{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;color:var(--ink-3);border:1px solid var(--rule-2);padding:.22rem .5rem;border-radius:2px}
+.note{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);margin-top:.7rem;font-style:normal}
+.entry a.ext{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor;font-size:.88rem}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:1px;background:var(--rule-2);border:1px solid var(--rule-2)}
+.skill{background:var(--paper);padding:1.15rem 1.25rem}
+.skill h3{margin:0 0 .1rem;font-size:.78rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.skill .cnt{font-family:var(--mono);font-size:.64rem;color:var(--ink-3)}
+.skill ul{list-style:none;margin:.7rem 0 0;padding:0}
+.skill li{color:var(--ink-2);font-size:.9rem;padding:.16rem 0}
+
+/* contact */
+.contact-grid{display:flex;flex-wrap:wrap;gap:.7rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;
+  font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;
+  border:1px solid var(--rule);color:var(--ink);padding:.65rem 1.05rem;border-radius:3px;
+}
+.btn:hover,.btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+
+/* title block footer */
+footer{border-top:1px solid var(--rule);padding:0 0 3rem}
+.tblock{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule-2);border-bottom:1px solid var(--rule-2)}
+@media (min-width:760px){.tblock{grid-template-columns:repeat(5,1fr)}}
+@media (max-width:759px){.tcell:last-child{grid-column:1/-1}}
+.tcell{background:var(--paper);padding:.85rem 1rem}
+.tcell span{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.tcell b{display:block;font-family:var(--mono);font-size:.8rem;color:var(--ink-2);font-weight:500;margin-top:.25rem}
+.colophon{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);padding-top:1.2rem}
+
+@media (max-width:640px){
+  .entry{grid-template-columns:1fr;gap:.4rem}
+  .when{padding-top:0}
+  .brand .full{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="sheet">
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <div class="brand"><b>Ali Qudsi</b> <span class="full">— Engineering Science</span></div>
+    <nav class="nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="themetoggle" id="themetoggle" type="button" aria-label="Switch color theme">Theme</button>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="wrap hero">
+    <p class="tick">Monmouth County, New Jersey</p>
+    <h1>Ali<br>Qudsi</h1>
+    <div class="rulewide"></div>
+    <p class="lede">Engineering science student on a <strong>civil and structural</strong> pathway — with an economics background and a habit of building the business case as well as the structure.</p>
+    <div class="meta">
+      <span>A.S. Engineering Science · Expected May 2027</span>
+      <a href="mailto:ali.qudsi25@gmail.com">ali.qudsi25@gmail.com</a>
+      <a href="https://linkedin.com/in/aliqudsi" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="langs" aria-label="Languages spoken">
+      <span>English</span><span>Persian</span><span>Arabic</span><span>Hindi</span>
+    </div>
+  </div>
+
+  <div class="wrap indexwrap">
+    <p class="indexlabel">Index — jump to a section</p>
+    <div class="index">
+      <a class="card" href="#about">
+        <span class="n">01</span>
+        <h3>About Me</h3>
+        <p>Where I come from, what I've done, and where I'm headed.</p>
+        <span class="go">Read →</span>
+      </a>
+      <a class="card" href="#projects">
+        <span class="n">04</span>
+        <h3>Projects</h3>
+        <p>Bridge modeling, load analysis, a rover, and two business plans.</p>
+        <span class="go">Browse →</span>
+      </a>
+      <a class="card" href="#skills">
+        <span class="n">05</span>
+        <h3>Skills</h3>
+        <p>Engineering, software, lab work, business, communication, languages.</p>
+        <span class="go">View →</span>
+      </a>
+      <a class="card" href="#contact">
+        <span class="n">06</span>
+        <h3>Contact Me</h3>
+        <p>Open to internships, transfer conversations, and structural work.</p>
+        <span class="go">Get in touch →</span>
+      </a>
+    </div>
+  </div>
+
+  <section id="about" class="wrap">
+    <div class="shead"><span class="snum">01</span><h2>About Me</h2><span class="fill"></span></div>
+    <div class="entry">
+      <div class="when">Profile</div>
+      <div>
+        <p>I grew up between countries and languages — English, Persian, Arabic, and Hindi, all fluent — and finished high school at GEMS American Academy, playing varsity football and basketball alongside a full course load.</p>
+        <p>Before engineering, I spent two years in my family's confectionery in Doha. That job had two halves: measuring to tight tolerances on the production side, and negotiating face-to-face with customers on the sales side. Both turned out to be useful training. Then two years studying economics at Stony Brook, which is where the interest in how things get funded and justified came from.</p>
+        <p>I'm now at Brookdale in engineering science on a civil pathway, heading toward a B.S. in civil engineering with a structural concentration. The through-line across everything here is that I like problems where the structure and the business case both have to hold up.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="wrap">
+    <div class="shead"><span class="snum">02</span><h2>Education</h2><span class="fill"></span></div>
+
+    <div class="entry">
+      <div class="when">Aug 2025 —<br>May 2027</div>
+      <div>
+        <h3>Associate of Science, Engineering Science</h3>
+        <p class="org">Brookdale Community College · Lincroft, NJ</p>
+        <p>Civil engineering pathway. Pursuing transfer to a four-year B.S. in Civil Engineering with a structural concentration.</p>
+        <div class="tagrow">
+          <span class="tag">Statics</span><span class="tag">Dynamics</span><span class="tag">Calculus I–III</span>
+          <span class="tag">Physics I–II</span><span class="tag">Engineering Graphics</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Aug 2023 —<br>Aug 2025</div>
+      <div>
+        <h3>Economics, College of Arts &amp; Sciences</h3>
+        <p class="org">Stony Brook University · Stony Brook, NY</p>
+        <p>Coursework across economics and engineering, building the quantitative reasoning that now underpins the feasibility and financial work in my projects.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">2019 —<br>2023</div>
+      <div>
+        <h3>High School Diploma</h3>
+        <p class="org">GEMS American Academy</p>
+        <p>Varsity football and basketball while carrying a full academic load.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="wrap">
+    <div class="shead"><span class="snum">03</span><h2>Experience</h2><span class="fill"></span></div>
+
+    <div class="entry">
+      <div class="when">2022 — 2023</div>
+      <div>
+        <h3>Confectioner &amp; Sales Negotiator</h3>
+        <p class="org">Qudsi Sweets · Doha, Qatar</p>
+        <ul>
+          <li>Measured and combined ingredients to tight tolerances for consistent, high-quality confections — the same discipline engineering specifications demand.</li>
+          <li>Engaged customers directly through negotiation and cultural awareness, building lasting relationships and improving visibility for specialty sweets and nuts.</li>
+          <li>Identified inefficiencies in the preparation workflow and proposed resequenced tasks, reducing production time during peak hours.</li>
+          <li>Coordinated timelines and task priorities with the team through high-volume production periods.</li>
+          <li>Trained new employees on processes and equipment, translating technical procedure into clear step-by-step instruction.</li>
+          <li>Maintained strict adherence to food safety and sanitation protocols.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="wrap">
+    <div class="shead"><span class="snum">04</span><h2>Projects</h2><span class="fill"></span></div>
+
+    <div class="entry">
+      <div class="when">2026</div>
+      <div>
+        <h3>Legacy Loaves — Community Bakery Café</h3>
+        <p class="org">Business plan · Toms River, NJ</p>
+        <p>A complete venture plan for a community-focused bakery café built around an underserved group: local seniors. Structured as a three-founder LLC with defined ownership, and developed end to end — problem statement, market assessment, product line, funding structure, and five-year outlook.</p>
+        <p>The concept centers on a bakery designed for people usually designed around: low-sugar and soft-texture options, a paid Senior Community Ambassador program, and workshops that make the café a place to belong rather than just buy bread.</p>
+        <div class="tagrow">
+          <span class="tag">Market analysis</span><span class="tag">Financial projections</span>
+          <span class="tag">Ownership structure</span><span class="tag">Pitch deck</span>
+        </div>
+        <p class="note">Academic business plan — figures are projections, not operating results.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Spring 2026</div>
+      <div>
+        <h3>3D Truss Bridge Design</h3>
+        <p class="org">Engineering Graphics · Autodesk Fusion 360</p>
+        <ul>
+          <li>Modeled a truss bridge in Fusion 360, applying constraints and material properties to simulate real-world structural behavior.</li>
+          <li>Iterated on design geometry with a team of three based on stress-analysis feedback, strengthening the final structure by 15% under load testing.</li>
+        </ul>
+        <div class="tagrow"><span class="tag">Fusion 360</span><span class="tag">Stress analysis</span><span class="tag">Team of 3</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Fall 2025</div>
+      <div>
+        <h3>Structural Load Analysis</h3>
+        <p class="org">Engineering Statics</p>
+        <ul>
+          <li>Calculated internal forces, shear diagrams, and bending moments for a simply supported beam under varied loading using equilibrium equations.</li>
+          <li>Presented the analysis to a class of 25, communicating complex force results through visual aids and free-body diagrams.</li>
+        </ul>
+        <div class="tagrow"><span class="tag">Statics</span><span class="tag">Free-body diagrams</span><span class="tag">Technical presentation</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">2024</div>
+      <div>
+        <h3>Mars Rover — Group 27</h3>
+        <p class="org">Engineering design &amp; build</p>
+        <p>Designed and assembled a rover as part of a project team, documenting the component breakdown and final build.</p>
+        <p><a class="ext" href="https://youtu.be/aAEWk189cIE" rel="noopener">Watch the build video →</a></p>
+        <div class="tagrow"><span class="tag">Mechanical assembly</span><span class="tag">Team project</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">2026</div>
+      <div>
+        <h3>ShoreBowl — Coastal Fusion Food Truck</h3>
+        <p class="org">Business plan · Monmouth County, NJ</p>
+        <p>A mobile food concept built on a specific local gap: Jersey Shore foot traffic wanting lighter, customizable meals in a market saturated with fried food. Covered positioning, operations, and seasonal demand.</p>
+        <div class="tagrow"><span class="tag">Feasibility analysis</span><span class="tag">Positioning</span></div>
+        <p class="note">Academic business plan.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">2026</div>
+      <div>
+        <h3>Content Creation Club</h3>
+        <p class="org">Brookdale Community College</p>
+        <p>Authored the club constitution establishing purpose, membership, and executive board structure. The club produces media for campus organizations and promotes student events.</p>
+        <div class="tagrow"><span class="tag">Governance</span><span class="tag">Media production</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <div class="shead"><span class="snum">05</span><h2>Skills</h2><span class="fill"></span></div>
+    <div class="skills">
+      <div class="skill">
+        <h3>Engineering &amp; Analysis</h3><span class="cnt">01</span>
+        <ul><li>Static &amp; dynamic force analysis</li><li>Free-body diagrams</li><li>Shear &amp; bending-moment diagrams</li><li>Structural load analysis</li><li>3D modeling</li><li>Engineering drawings</li></ul>
+      </div>
+      <div class="skill">
+        <h3>Software &amp; Tools</h3><span class="cnt">02</span>
+        <ul><li>Autodesk Fusion 360</li><li>MATLAB</li><li>Python</li><li>Excel · Word · PowerPoint</li></ul>
+      </div>
+      <div class="skill">
+        <h3>Laboratory &amp; Fabrication</h3><span class="cnt">03</span>
+        <ul><li>Precision measurement</li><li>Material handling</li><li>Equipment calibration</li><li>Safety compliance</li></ul>
+      </div>
+      <div class="skill">
+        <h3>Business &amp; Entrepreneurship</h3><span class="cnt">04</span>
+        <ul><li>Business plan development</li><li>Market &amp; feasibility analysis</li><li>Financial projections</li><li>Sales negotiation</li><li>Ownership-structure planning</li></ul>
+      </div>
+      <div class="skill">
+        <h3>Communication &amp; Leadership</h3><span class="cnt">05</span>
+        <ul><li>Public speaking</li><li>Technical instruction &amp; training</li><li>Cross-cultural communication</li><li>Team collaboration</li><li>Mentoring</li></ul>
+      </div>
+      <div class="skill">
+        <h3>Languages</h3><span class="cnt">06</span>
+        <ul><li>English — fluent</li><li>Persian — fluent</li><li>Arabic — fluent</li><li>Hindi — fluent</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap">
+    <div class="shead"><span class="snum">06</span><h2>Contact</h2><span class="fill"></span></div>
+    <p class="lede" style="margin-bottom:1.6rem">Open to internships, transfer conversations, and structural engineering work.</p>
+    <div class="contact-grid">
+      <a class="btn" href="mailto:ali.qudsi25@gmail.com">ali.qudsi25@gmail.com</a>
+      <a class="btn" href="https://linkedin.com/in/aliqudsi" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/aliqudsi25-git" rel="noopener">GitHub</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="tblock">
+      <div class="tcell"><span>Drawn by</span><b>Ali Qudsi</b></div>
+      <div class="tcell"><span>Discipline</span><b>Civil / Structural</b></div>
+      <div class="tcell"><span>Location</span><b>Monmouth County, NJ</b></div>
+      <div class="tcell"><span>Status</span><b>Open to work</b></div>
+      <div class="tcell"><span>Sheet</span><b>01 of 01</b></div>
+    </div>
+    <p class="colophon">© <span id="yr">2026</span> Ali Qudsi · aliqudsi.com</p>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, key="theme";
+  var saved=null; try{saved=localStorage.getItem(key)}catch(e){}
+  if(saved){root.setAttribute("data-theme",saved)}
+  document.getElementById("themetoggle").addEventListener("click",function(){
+    var cur=root.getAttribute("data-theme");
+    if(!cur){cur=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}
+    var next=cur==="dark"?"light":"dark";
+    root.setAttribute("data-theme",next);
+    try{localStorage.setItem(key,next)}catch(e){}
+  });
+  document.getElementById("yr").textContent=new Date().getFullYear();
+})();
+</script>
+</body>
 </html>
