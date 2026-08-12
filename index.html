@@ -3,18 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ali Qudsi — Engineering Science &amp; Structural Design</title>
-<meta name="description" content="Ali Qudsi — engineering science student on a civil/structural pathway, with a background in economics, business planning, and four languages. Monmouth County, New Jersey.">
+<title>Ali Qudsi — Civil Engineering &amp; Structural Design</title>
+<meta name="description" content="Ali Qudsi — civil engineering student on a structural pathway, with a background in economics, business planning, and four languages. Monmouth County, New Jersey.">
 <link rel="canonical" href="https://aliqudsi.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aliqudsi.com/">
-<meta property="og:title" content="Ali Qudsi — Engineering Science &amp; Structural Design">
-<meta property="og:description" content="Engineering science student on a civil/structural pathway. Structural analysis, 3D modeling, business planning, four languages.">
+<meta property="og:title" content="Ali Qudsi — Civil Engineering &amp; Structural Design">
+<meta property="og:description" content="Civil engineering student on a structural pathway. Structural analysis, 3D modeling, business planning, four languages.">
 <meta property="og:site_name" content="Ali Qudsi">
+<meta property="og:image" content="https://aliqudsi.com/photo.jpg">
+<meta property="og:image:alt" content="Portrait of Ali Qudsi">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ali Qudsi — Engineering Science &amp; Structural Design">
-<meta name="twitter:description" content="Engineering science student on a civil/structural pathway. Structural analysis, 3D modeling, business planning, four languages.">
+<meta name="twitter:image" content="https://aliqudsi.com/photo.jpg">
+<meta name="twitter:title" content="Ali Qudsi — Civil Engineering &amp; Structural Design">
+<meta name="twitter:description" content="Civil engineering student on a structural pathway. Structural analysis, 3D modeling, business planning, four languages.">
 <meta name="theme-color" content="#f4f2ed" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#12140f" media="(prefers-color-scheme: dark)">
 
@@ -112,6 +115,26 @@ body{
   border:1px solid var(--rule);color:var(--ink-2);padding:.28rem .6rem;border-radius:2px;
 }
 
+/* ---------- about / portrait ---------- */
+.aboutgrid{display:grid;grid-template-columns:minmax(0,14rem) minmax(0,1fr);gap:1.5rem 2.6rem;align-items:start}
+.portrait{margin:0;position:relative}
+.portrait img{display:block;width:100%;height:auto;border:1px solid var(--rule)}
+.portrait::before,.portrait::after{
+  content:"";position:absolute;width:9px;height:9px;border:1px solid var(--accent);pointer-events:none
+}
+.portrait::before{top:-4px;left:-4px;border-right:none;border-bottom:none}
+.portrait::after{bottom:2.05rem;right:-4px;border-left:none;border-top:none}
+.portrait figcaption{
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);margin-top:.65rem
+}
+.bio p{margin:0 0 .9rem;color:var(--ink-2)}
+.bio p:last-child{margin-bottom:0}
+@media (max-width:700px){
+  .aboutgrid{grid-template-columns:1fr;gap:1.4rem}
+  .portrait{max-width:15rem}
+}
+
 /* ---------- index / dashboard ---------- */
 .indexwrap{padding-bottom:clamp(2.5rem,6vw,4rem)}
 .indexlabel{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin:0 0 .9rem}
@@ -191,7 +214,7 @@ footer{border-top:1px solid var(--rule);padding:0 0 3rem}
 
 <header class="topbar">
   <div class="wrap topbar-in">
-    <div class="brand"><b>Ali Qudsi</b> <span class="full">— Engineering Science</span></div>
+    <div class="brand"><b>Ali Qudsi</b> <span class="full">— Civil Engineering</span></div>
     <nav class="nav" aria-label="Sections">
       <a href="#about">About</a>
       <a href="#education">Education</a>
@@ -210,7 +233,7 @@ footer{border-top:1px solid var(--rule);padding:0 0 3rem}
     <p class="tick">Monmouth County, New Jersey</p>
     <h1>Ali<br>Qudsi</h1>
     <div class="rulewide"></div>
-    <p class="lede">Engineering science student on a <strong>civil and structural</strong> pathway — with an economics background and a habit of building the business case as well as the structure.</p>
+    <p class="lede"><strong>Civil engineering</strong> student on a structural pathway — with an economics background and a habit of building the business case as well as the structure.</p>
     <div class="meta">
       <span>A.S. Engineering Science · Expected May 2027</span>
       <a href="mailto:ali.qudsi25@gmail.com">ali.qudsi25@gmail.com</a>
@@ -253,12 +276,15 @@ footer{border-top:1px solid var(--rule);padding:0 0 3rem}
 
   <section id="about" class="wrap">
     <div class="shead"><span class="snum">01</span><h2>About Me</h2><span class="fill"></span></div>
-    <div class="entry">
-      <div class="when">Profile</div>
-      <div>
+    <div class="aboutgrid">
+      <figure class="portrait">
+        <img src="photo.jpg" width="720" height="944" alt="Portrait of Ali Qudsi" decoding="async">
+        <figcaption>Fig. 01 — Ali Qudsi</figcaption>
+      </figure>
+      <div class="bio">
         <p>I grew up between countries and languages — fluent in English, Arabic, and Farsi, and conversational in spoken Hindi — and finished high school at GEMS American Academy, playing varsity soccer alongside a full course load.</p>
         <p>Before engineering, I spent two years in my family's confectionery in Doha. That job had two halves: measuring to tight tolerances on the production side, and negotiating face-to-face with customers on the sales side. Both turned out to be useful training. Then two years studying economics at Stony Brook, which is where the interest in how things get funded and justified came from.</p>
-        <p>I'm now at Brookdale in engineering science on a civil pathway, heading toward a B.S. in civil engineering with a structural concentration. The through-line across everything here is that I like problems where the structure and the business case both have to hold up.</p>
+        <p>I'm now studying civil engineering at Brookdale, heading toward a B.S. in civil engineering with a structural concentration. The through-line across everything here is that I like problems where the structure and the business case both have to hold up.</p>
       </div>
     </div>
   </section>
