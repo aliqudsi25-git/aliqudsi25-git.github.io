@@ -182,12 +182,26 @@ section{border-top:1px solid var(--rule);padding-block:clamp(2.4rem,6vw,4rem)}
 }
 
 /* skills */
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:1px;background:var(--rule-2);border:1px solid var(--rule-2)}
+.skills{display:grid;grid-template-columns:1fr;gap:1px;background:var(--rule-2);border:1px solid var(--rule-2)}
+@media (min-width:560px){.skills{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:900px){.skills{grid-template-columns:repeat(3,1fr)}}
 .skill{background:var(--paper);padding:1.15rem 1.25rem}
 .skill h3{margin:0 0 .1rem;font-size:.78rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600}
 .skill .cnt{font-family:var(--mono);font-size:.64rem;color:var(--ink-3)}
 .skill ul{list-style:none;margin:.7rem 0 0;padding:0}
 .skill li{color:var(--ink-2);font-size:.9rem;padding:.16rem 0}
+
+/* certifications */
+.certs{list-style:none;margin:0;padding:0;border-top:1px dashed var(--rule-2)}
+.certs li{
+  display:flex;flex-wrap:wrap;gap:.15rem 1.2rem;justify-content:space-between;align-items:baseline;
+  padding:.75rem 0;border-bottom:1px dashed var(--rule-2)
+}
+.certs b{font-weight:560;font-size:.98rem;color:var(--ink)}
+.certs em{
+  font-style:normal;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);white-space:nowrap
+}
 
 /* contact */
 .contact-grid{display:flex;flex-wrap:wrap;gap:.7rem}
@@ -229,6 +243,7 @@ footer{border-top:1px solid var(--rule);padding:0 0 3rem}
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
       <a href="#contact">Contact</a>
     </nav>
     <button class="themetoggle" id="themetoggle" type="button" aria-label="Switch color theme">Theme</button>
@@ -274,7 +289,7 @@ footer{border-top:1px solid var(--rule);padding:0 0 3rem}
         <span class="go">View →</span>
       </a>
       <a class="card" href="#contact">
-        <span class="n">06</span>
+        <span class="n">07</span>
         <h3>Contact Me</h3>
         <p>Open to internships, transfer conversations, and structural work.</p>
         <span class="go">Get in touch →</span>
@@ -476,8 +491,18 @@ footer{border-top:1px solid var(--rule);padding:0 0 3rem}
     </div>
   </section>
 
+  <section id="certifications" class="wrap">
+    <div class="shead"><span class="snum">06</span><h2>Certifications</h2><span class="fill"></span></div>
+    <ul class="certs">
+      <li><b>AI Fluency for students</b><em>Anthropic</em></li>
+      <li><b>AI Fluency: AI Capabilities &amp; Limitations</b><em>Anthropic</em></li>
+      <li><b>Introduction to agent skills</b><em>Anthropic</em></li>
+      <li><b>Claude Code in Action</b><em>Anthropic</em></li>
+    </ul>
+  </section>
+
   <section id="contact" class="wrap">
-    <div class="shead"><span class="snum">06</span><h2>Contact</h2><span class="fill"></span></div>
+    <div class="shead"><span class="snum">07</span><h2>Contact</h2><span class="fill"></span></div>
     <p class="lede" style="margin-bottom:1.6rem">Open to internships, transfer conversations, and structural engineering work.</p>
     <div class="contact-grid">
       <a class="btn" href="mailto:ali.qudsi25@gmail.com">ali.qudsi25@gmail.com</a>
